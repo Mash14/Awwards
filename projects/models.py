@@ -8,3 +8,15 @@ class Project(models.Model):
     image = models.ImageField(upload_to = 'l_page/')
     description = HTMLField()
     link = models.CharField(max_length=120)
+
+    def save_project(self):
+        self.save()
+
+    @classmethod
+    def delete_project(cls,id):
+        cls.objects.filter(id = id).delete()
+
+    @classmethod
+    def search_project(cls,search_term):
+        projects = cls.objects.filter(title__icontains=search_term)
+        return projects
