@@ -16,8 +16,9 @@ class Profile(models.Model):
     def save_profile(self):
         self.save()
 
-    def delete_profile(self):
-        self.delete()
+    @classmethod
+    def delete_profile(cls,id):
+        cls.objects.filter(id = id).delete()
         
 class Project(models.Model):
     title = models.CharField(max_length=70)
