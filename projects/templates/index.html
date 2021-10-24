@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block content %}
+{{block.super}}
+<h1 class="text-center">Awwards</h1>
+<div class="welcome">
+    <p class="text-center">Welcome to Awwards. A place to share your projects with others online and give honest reviews on others projects</p>
+</div>
+<div class="container">
+    <h2 class="text-center">Projects</h2>
+    <hr>
+
+    {% for project in projects %}
+    <div class="responsive">
+        <div class="projct">
+            <a href="#"><img src="{{project.image.url}}"  alt="Image" width="" height=""></a>
+            <div class="desc">
+                <h3 class="text-center"><a href="#"> {{ project.title }} </a></h3>
+                <p>{{project.description}}</p>
+                <p>Link to the live site: {{project.link}}</p>
+                {% if owner %}
+                <p>Project by: {{project.owner.username}}</p>
+                {% endif %}
+                <p>Posted on: {{project.pub_date|date:"M d, Y" }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock %}
