@@ -6,3 +6,8 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         exclude = ['owner','profile','pub_date']
+
+class NewProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ['user']
