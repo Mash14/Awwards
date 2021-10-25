@@ -28,8 +28,8 @@ def post_project(request):
     return render(request, 'post_project.html',{'form':form,'title':title})
 
 def search(request):
-    if 'project' in request.GET and request.GET['project']:
-        search_term = request.GET.get('project')
+    if 'title' in request.GET and request.GET['title']:
+        search_term = request.GET.get('title')
         searched_projects = Project.search_project(search_term)
         message = f'{search_term}'
 
