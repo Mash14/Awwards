@@ -18,9 +18,9 @@
                         <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="{%url 'homePage'%}">Home</a>
+                                <a href="{%url 'homePage' %}">Home</a>
                             </li>
-                            <li><a href="#"><i class="fa fa-user-o"></i> Profile</a></li>
+                            <li><a href="{% url 'profile_page' %}"><i class="fa fa-user-o"></i> Profile</a></li>
                             <li>
                                 <a href="{%url 'post_project'%}">Post Project</a>
                             </li>

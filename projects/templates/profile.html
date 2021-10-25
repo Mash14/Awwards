@@ -1,0 +1,50 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block content %}
+{{block.super}}
+<h1 class="text-center">{{user.username}}'s Profile</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{userProfile.profile_pic.url}}" class="img-responsive">
+        </div>
+        <div class="col-md-8">
+            <h3>{{user.username}} <a href="#"><button class="btn btn-warning btn-">Edit Profile</button></a></h3>
+            <h2>Bio:</h2>
+            <p>{{userProfile.bio}}</p>
+            <h2>Contact Information:</h2>
+            <p>{{userProfile.contact}}</p>
+        </div>
+    </div>
+    {% if projects %}
+    <h2 class="text-center">{{user.username}}'s Projects</h2>
+    {% endif %}
+    
+    {% for project in projects %}
+    <div class="row">
+
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="responsive">
+                <div class="projct">
+                    <a href="#"><img src="{{project.image.url}}"  class="img-responsive" alt="Image" width="700" height="700"></a>
+                    <div class="desc">
+                        <h3 class="text-center"><a href="#"> {{ project.title }} </a></h3>
+                        {% autoescape on %}
+                        <p>{{project.description}}</p>
+                        {% endautoescape %}  
+                        <p>Project by: {{project.owner.username}}</p>               
+                    </div>
+                </div>
+            </div>
+        <div class="col-md-3"></div>
+        </div>
+    
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

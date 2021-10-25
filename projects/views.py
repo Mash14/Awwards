@@ -44,5 +44,9 @@ def search(request):
 def profile(request):
     current_user = request.user
     projects = Project.objects.filter(owner=current_user).all()
-    userProfile = Profile.objects.filter(owner = current_user).first()
+    userProfile = Profile.objects.filter(user = current_user).first()
     return render(request, 'profile.html', {"projects": projects,'userProfile':userProfile})
+
+@login_required(login_url='/accounts/login/')
+def update_profile(request):
+    
