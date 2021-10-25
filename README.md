@@ -36,7 +36,7 @@ You need to have the following to have this project working on your local system
 
 ## Development Installation
 
-1. Clone the repositories: git clone https://github.com/Mash14/awwards.git
+1. Clone the repositories: git clone https://github.com/Mash14/Awwards.git
 
 2. Move to the folder and install requirements 
 
