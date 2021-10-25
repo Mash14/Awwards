@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'projects.apps.ProjectsConfig',
     'bootstrap3',
     'tinymce',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
