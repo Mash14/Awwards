@@ -1,21 +1,24 @@
 {%extends 'base.html'%}
 {% load bootstrap3 %}
-{% load static %}
 
 {% block content %}
 {{block.super}}
 
-<h1 class="text-center">Awwards</h1>
-<div class="welcome">
-    <p class="text-center">Welcome to Awwards. A place to share your projects with others online and give honest reviews on others projects</p>
-</div>
 <div class="container">
-    <h2 class="text-center">Projects</h2>
-    <hr>
+    <div class="row">
+        {% if projects %}
+        <h3 class="text-center">Found {{ projects|length }} result on {{message}}</h3>
+        <div class="container">
+            <hr />
+        </div>
+        {% else %}
+        <h3 class="text-center">We couldn't find any project of that name, kindly search again</h3>
+        {% endif %}
+    </div>
 
     {% for project in projects %}
     <div class="row">
-
+        
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <div class="responsive">
@@ -26,9 +29,9 @@
                         {% autoescape on %}
                         <p>{{project.description}}</p>
                         {% endautoescape %}
-                            
+                        <p><a href='{{project.link}}'>Go to site</a></p>    
                         <p>Project by: {{project.owner.username}}</p>               
-                        
+                        <p>Posted on: {{project.pub_date}}</p>
                     </div>
                 </div>
             </div>
@@ -38,5 +41,4 @@
     </div>
     {% endfor %}
 
-</div>
 {% endblock %}
