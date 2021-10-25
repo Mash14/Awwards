@@ -106,4 +106,4 @@ def single_project(request, id):
         'ratings': rate
 
     }
-    return render(request, 'view-project.html', params)
+    return render(request, 'view_project.html', params)

@@ -13,7 +13,9 @@
         <div class="col-md-8">
             <h3>{{user.username}} <a href="{%url 'update_profile'%}"><button class="btn btn-warning btn-">Edit Profile</button></a></h3>
             <h2>Bio:</h2>
+            {% autoescape on %}
             <p>{{userProfile.bio}}</p>
+            {% endautoescape %}
             <h2>Contact Information:</h2>
             <p>{{userProfile.contact}}</p>
         </div>
