@@ -8,9 +8,9 @@ urlpatterns=[
     url('post/project/',views.post_project,name = 'post_project'),
     url('search/', views.search, name='search'),
     url('profile/',views.profile, name='profile_page'),
-    url('profile/update/', views.update_profile, name='update_profile'),
+    url('profiles/update/', views.update_profile, name='update_profile'),
     url('project/(?P<id>\d+)', views.single_project, name='view_project'),
-    url('api/profile',views.ProfileList.as_view()),
+    url('api/profiles',views.ProfileList.as_view()),
     url('api/projects',views.ProjectList.as_view()),
 ]
 
