@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns=[
     url('^$',views.home_page,name = 'homePage'),
+    url('post/project/',views.post_project,name = 'post_project'),
 ]
 
 if settings.DEBUG:
