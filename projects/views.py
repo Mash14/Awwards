@@ -1,7 +1,9 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from .models import Profile,Project
-from .forms import ProjectForm,NewProfileForm
+from .models import Profile,Project,Rates
+from .forms import ProjectForm,NewProfileForm,RatingsForm
+from django.urls import reverse
+from django.http.response import HttpResponse, HttpResponseRedirect
 
 # Create your views here.
 
@@ -65,3 +67,43 @@ def update_profile(request):
         
     title = 'Update Profile'
     return render(request, 'update_profile.html',{'form':form,'title':title,'userProfile':userProfile})
+
+@login_required(login_url='/accounts/login')
+def single_project(request, id):
+    project = Project.objects.get(id=id)
+    rate = Rates.objects.filter(user=request.user, project=project).first()
+    ratings = Rates.objects.all()
+    rating_status = None
+    if rate is None:
+        rating_status = False
+    else:
+        rating_status = True
+    current_user = request.user
+    if request.method == 'POST':
+        form = RatingsForm(request.POST)
+        if form.is_valid():
+            design = form.cleaned_data['design']
+            usability = form.cleaned_data['usability']
+            content = form.cleaned_data['content']
+            review = Rates()
+            review.project = project
+            review.user = current_user
+            review.design = design
+            review.usability = usability
+            review.content = content
+            review.average = (
+                review.design + review.usability + review.content)/3
+            review.save()
+            return HttpResponseRedirect(reverse('view_project', args=(project.id,)))
+    else:
+         form = RatingsForm()
+
+    params = {
+        'project': project,
+        'form': form,
+        'rating_status': rating_status,
+        'reviews': ratings,
+        'ratings': rate
+
+    }
+    return render(request, 'view-project.html', params)
