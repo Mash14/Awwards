@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Project,Profile
+from .models import Project,Profile,Rates
 from django.contrib.auth.models import User
 
 # Create your tests here.
@@ -72,3 +72,21 @@ class ProjectTestClass(TestCase):
         search_project = self.new_project.get_project_by_id(self.new_project.id)
         searched_project = Project.objects.filter(id=self.new_project.id)
         self.assertTrue(searched_project,search_project)
+
+
+class RatesTestClass(TestCase):
+
+    def setUp(self):
+        self.user = User(username = 'mash', email = 'mash@gmail.com', password = 'test')
+        self.user.save()
+
+        self.new_profile = Profile(profile_pic = 'image3.jpg', bio = 'G.O.A.T', contact = '0791919191',user = self.user)
+        self.new_profile.save()
+
+        self.new_project = Project(title = 'Club',image = 'image.png',description = 'A project about the quivers club',link = 'link.heroku.com',profile=self.new_profile)
+        self.new_project.save_project()
+
+        self.rate = Rates(design='Just Perfect',usability='Easy to use',content='Explanatory', project = self.new_project)
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.rate, Rates))
