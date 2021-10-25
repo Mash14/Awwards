@@ -6,8 +6,7 @@ from django.urls import reverse
 from django.http.response import HttpResponse, HttpResponseRedirect
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializer import UserSerializer,ProfileSerializer
-from django.http import Http404
+from .serializer import UserSerializer,ProfileSerializer,ProjectSerializer
 
 # Create your views here.
 
@@ -117,4 +116,11 @@ class ProfileList(APIView):
     def get(self, request, format=None):
         profiles = Profile.objects.all()
         serializer = ProfileSerializer(profiles, many=True)
+        return Response(serializer.data)
+
+class ProjectList(APIView):
+
+    def get(self, request, format = None):
+        projects = Project.objects.all()
+        serializer = ProjectSerializer(projects, many=True)
         return Response(serializer.data)
