@@ -11,7 +11,7 @@
             <img src="{{userProfile.profile_pic.url}}" class="img-responsive">
         </div>
         <div class="col-md-8">
-            <h3>{{user.username}} <a href="#"><button class="btn btn-warning btn-">Edit Profile</button></a></h3>
+            <h3>{{user.username}} <a href="{%url 'update_profile'%}"><button class="btn btn-warning btn-">Edit Profile</button></a></h3>
             <h2>Bio:</h2>
             <p>{{userProfile.bio}}</p>
             <h2>Contact Information:</h2>

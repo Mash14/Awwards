@@ -53,13 +53,15 @@ def update_profile(request):
     userProfile = Profile.objects.filter(profile_user = current_user).first()
     if request.method == 'POST':
         form = NewProfileForm(request.POST, request.FILES)
+        
         if form.is_valid():
             profile = form.save(commit = False)
             profile.user = current_user
             profile.save()
             return redirect('profile_page')
-        else:
-            form = NewProfileForm()
+
+    else:
+        form = NewProfileForm()
         
-        title = 'Update Profile'
-        return render(request, 'update_profile.html',{'form':form,'title':title,'userProfile':userProfile})
+    title = 'Update Profile'
+    return render(request, 'update_profile.html',{'form':form,'title':title,'userProfile':userProfile})
