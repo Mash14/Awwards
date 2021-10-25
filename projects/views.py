@@ -4,6 +4,10 @@ from .models import Profile,Project,Rates
 from .forms import ProjectForm,NewProfileForm,RatingsForm
 from django.urls import reverse
 from django.http.response import HttpResponse, HttpResponseRedirect
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import UserSerializer,ProfileSerializer
+from django.http import Http404
 
 # Create your views here.
 
@@ -107,3 +111,10 @@ def single_project(request, id):
 
     }
     return render(request, 'view_project.html', params)
+
+class ProfileList(APIView):
+
+    def get(self, request, format=None):
+        profiles = Profile.objects.all()
+        serializer = ProfileSerializer(profiles, many=True)
+        return Response(serializer.data)

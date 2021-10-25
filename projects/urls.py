@@ -10,6 +10,7 @@ urlpatterns=[
     url('profile/',views.profile, name='profile_page'),
     url('profile/update/', views.update_profile, name='update_profile'),
     url('project/(?P<id>\d+)', views.single_project, name='view_project'),
+    url('api/v1/profile',views.ProfileList.as_view(),name='profileEndPoint'),
 ]
 
 if settings.DEBUG:
