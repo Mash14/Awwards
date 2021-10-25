@@ -39,3 +39,10 @@ def search(request):
         message = "You haven't searched for any project, try again"
     
     return render(request, 'search.html', {'message': message})
+
+@login_required(login_url='/accounts/login/')
+def profile(request):
+    current_user = request.user
+    projects = Project.objects.filter(owner=current_user).all()
+    userProfile = Profile.objects.filter(owner = current_user).first()
+    return render(request, 'profile.html', {"projects": projects,'userProfile':userProfile})
