@@ -55,7 +55,7 @@ def profile(request):
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
     current_user = request.user
-    userProfile = Profile.objects.filter(profile_user = current_user).first()
+    userProfile = Profile.objects.filter(user = current_user).first()
     if request.method == 'POST':
         form = NewProfileForm(request.POST, request.FILES)
         
