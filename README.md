@@ -42,11 +42,11 @@ You need to have the following to have this project working on your local system
 
 3. In the projects root directory, install the virtualenv library using pip and create a virtual environment. Run the following commands respectively:
 
-  - pip install virtualenv
+    - pip install virtualenv
 
-  - virtualenv virtual
+    - virtualenv virtual
 
-  - source virtual/bin/activate
+    - source virtual/bin/activate
 
 4. Download the all dependencies in the requirements.txt using pip install -r requirements.txt
 
@@ -67,6 +67,18 @@ You need to have the following to have this project working on your local system
 - Css
 
 - Bootstrap
+
+- Javascript
+
+## Live site
+
+[AWWARDS](https://awwerds-clone.herokuapp.com/)
+
+## Apis
+
+- [Profile](https://awwerds-clone.herokuapp.com/api/profiles/)
+
+- [Projects](https://awwerds-clone.herokuapp.com/api/projects/)
 
 ## Author
 
